@@ -54,6 +54,7 @@ class AppController extends Controller {
   public function beforeFilter(Event $event) {
     $this->userAuth = $this->Auth->user();
     $this->set('userAuth', $this->userAuth);
+    $this->viewBuilder()->layout('MAuth.default');
   }
   public function beforeRender(Event $event) {
     if (!array_key_exists('_serialize', $this->viewVars) &&
