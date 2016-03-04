@@ -32,7 +32,7 @@ class AppController extends Controller {
       ],
       'loginRedirect' => [
         'controller' => 'Account',
-        'action' => 'home'
+        'action' => 'index'
       ],
       'logoutRedirect' => [
         'controller' => 'Account',
