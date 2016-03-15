@@ -14,7 +14,7 @@ class UsersTable extends Table {
     parent::initialize($config);
 
     $this->table('auth_users');
-    $this->displayField('id');
+    $this->displayField('email');
     $this->primaryKey('id');
 
     $this->addBehavior('Timestamp');
