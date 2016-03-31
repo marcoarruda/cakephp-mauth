@@ -1,5 +1,5 @@
 <div class="users form large-9 medium-9 columns">
-  <?= $this->Form->create() ?>
+  <?= $this->Form->create($user) ?>
   <fieldset>
     <legend><?= __('Change password') ?></legend>
     <?= $this->Form->input('old_password', ['type' => 'password', 'label' => 'Old password']) ?>
