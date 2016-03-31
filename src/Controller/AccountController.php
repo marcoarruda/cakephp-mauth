@@ -25,8 +25,10 @@ class AccountController extends AppController {
   }
   // User actions
   public function login() {
+    $this->viewBuilder()->layout('Public/login');
+    $this->render('Public/login');
     if ($this->Auth->user() != null) {
-      $this->redirect(['action' => 'home']);
+      $this->redirect(['action' => 'index']);
     }
     if ($this->request->is('post')) {
       $user = $this->Auth->identify();
