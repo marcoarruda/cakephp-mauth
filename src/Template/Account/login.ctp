@@ -2,7 +2,7 @@
   <h2>Login</h2>
   <?= $this->Form->create() ?>
   <?= $this->Form->input('email') ?>
-  <?= $this->Form->input('password') ?>
+  <?= $this->Form->input('password',['value' => '']) ?>
   <br />
   <?= $this->Html->link('Forget password?', ['action' => 'forget']); ?>
   <br /><br />

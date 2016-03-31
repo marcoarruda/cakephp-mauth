@@ -59,13 +59,34 @@ class AccountController extends AppController {
       $this->_profile_edit($find_profile->id);
     }
   }
-  public function forget() {
-    $email = new Email();
-    $email->transport('default');
-    $email->deliver('marco.nc.arruda@gmail.com', 'Subject', 'Message', ['from' => 'me@example.com']);
-    $this->redirect(['action' => 'login']);
-    if($this->request->is('post')) {
+  public function changePassword() {
+    $this->loadModel('MAuth.Users');
+    $user = $this->Users->get($this->Auth->user('id'));
+    if (!empty($this->request->data)) {
+      $user = $this->Users->patchEntity($user, [
+        'old_password' => $this->request->data['old_password'],
+        'password' => $this->request->data['new_password'],
+        'new_password' => $this->request->data['new_password'],
+        'new_password_confirm' => $this->request->data['new_password_confirm']
+        ], ['validate' => 'password']
+      );
+      if ($this->Users->save($user)) {
+        $this->Flash->success('The password is successfully changed');
+        $this->redirect(['action' => 'index']);
+      } else {
+        $this->Flash->error('There was an error during the save!');
+      }
     }
+    $this->set('user', $user);
+  }
+  public function forget() {
+//    $email = new Email();
+//    $email->transport('default');
+//    $email->deliver('marco.nc.arruda@gmail.com', 'Subject', 'Message', ['from' => 'me@example.com']);
+//    $this->redirect(['action' => 'login']);
+//    if ($this->request->is('post')) {
+//      
+//    }
   }
   private function _profile_add() {
     $profile = $this->Profiles->newEntity();
